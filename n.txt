@@ -1,0 +1,9 @@
+1. npm init -y
+
+
+2.npm i express dotenv socket.io nodemon mongoose jsonwebtoken bcryptjs
+
+3. connecting to db
+ PORT = 3000
+
+MONGODB_CONNECT = 'mongodb+srv://chatdb:Abinash%402002@cluster0.p795ah6.mongodb.net/?appName=Cluster0'
