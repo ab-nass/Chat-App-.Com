@@ -21,6 +21,10 @@ app.use('/api/user',userRouter)
 
 
 const PORT = process.env.PORT || 3000
+app.get('/', (req, res) => {
+console.log("Server is working");
+
+})
 
 app.listen(PORT,()=>{
     dbConnect();
