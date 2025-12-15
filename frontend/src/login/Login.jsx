@@ -2,9 +2,12 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import { useAuth } from '../context/AuthContext'
 
 const Login = () => {
   const navigate = useNavigate()
+  const {setAuthUser} = useAuth()
+
 
   const [userInput, setUserInput] = useState({
     email: '',
@@ -36,6 +39,9 @@ const Login = () => {
 
       toast.success(data.message)
       localStorage.setItem('chatapp', JSON.stringify(data))
+          setAuthUser(data)
+       
+
       navigate('/')
 
     } catch (error) {

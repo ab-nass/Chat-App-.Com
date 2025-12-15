@@ -2,10 +2,11 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
+import { useAuth } from '../context/AuthContext';
 
 const Register = () => {
     const navigate = useNavigate()
-
+      const {setAuthUser} = useAuth();
     const [loading , setLoading] = useState(false);
     const [inputData , setInputData] = useState({})
 
@@ -27,7 +28,7 @@ const Register = () => {
         e.preventDefault()
         setLoading(true)
 
-        // ✅ FIXED PASSWORD CHECK
+        
         if (inputData.password !== inputData.confpassword) {
             setLoading(false)
             return toast.error("Password doesn't match")
@@ -43,8 +44,8 @@ const Register = () => {
 
             toast.success(data?.message)
             localStorage.setItem('chatapp', JSON.stringify(data))
-
-            // ✅ THIS WILL ALWAYS RUN
+            setAuthUser(data)
+    
             navigate('/login')
 
         } catch (error) {
@@ -82,7 +83,7 @@ const Register = () => {
                         placeholder='Enter password' required
                         className='w-full input input-bordered h-10' />
 
-                    {/* ✅ FIXED TYPE */}
+                    
                     <input id='confpassword' type='password' onChange={handelInput}
                         placeholder='Enter Confirm password' required
                         className='w-full input input-bordered h-10' />
